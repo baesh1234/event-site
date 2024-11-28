@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재고 관리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .product {
+            margin-bottom: 20px;
+        }
+
+        .product label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>재고 관리</h1>
+    <div id="products">
+        <div class="product">
+            <label>상품 1 상태:</label>
+            <select id="product1-status">
+                <option value="재고 있음">재고 있음</option>
+                <option value="품절">품절</option>
+            </select>
+        </div>
+        <div class="product">
+            <label>상품 2 상태:</label>
+            <select id="product2-status">
+                <option value="재고 있음">재고 있음</option>
+                <option value="품절">품절</option>
+            </select>
+        </div>
+    </div>
+    <button onclick="generateHTML()">HTML 파일 생성</button>
+
+    <script>
+        function generateHTML() {
+            const product1Status = document.getElementById('product1-status').value;
+            const product2Status = document.getElementById('product2-status').value;
+
+            const userPage = `
+            <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>굿스마일컴퍼니 재고 확인</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        padding: 20px;
+                        text-align: center;
+                    }
+                    .product {
+                        margin-bottom: 20px;
+                    }
+                    .stock {
+                        font-weight: bold;
+                    }
+                    .in-stock {
+                        color: green;
+                    }
+                    .out-of-stock {
+                        color: red;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>상품 재고 상태</h1>
+                <div class="product">
+                    <h3>상품 1</h3>
+                    <p class="stock ${product1Status === '재고 있음' ? 'in-stock' : 'out-of-stock'}">
+                        ${product1Status}
+                    </p>
+                </div>
+                <div class="product">
+                    <h3>상품 2</h3>
+                    <p class="stock ${product2Status === '재고 있음' ? 'in-stock' : 'out-of-stock'}">
+                        ${product2Status}
+                    </p>
+                </div>
+            </body>
+            </html>`;
+
+            // Blob을 사용하여 HTML 파일 다운로드
+            const blob = new Blob([userPage], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'index.html';
+            link.click();
+        }
+    </script>
+</body>
+</html>
