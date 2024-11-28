@@ -13,7 +13,7 @@
             background-color: #ffffff; /* 하얀 배경 */
             color: #333;
         }
-    
+
         header {
             display: flex;
             justify-content: space-between;
@@ -22,19 +22,19 @@
             background-color: #f8f8f8; /* 헤더 배경색 */
             border-bottom: 1px solid #ddd;
         }
-    
+
         .logo img {
-            height: 80px; /* 로고 크기 - 원하는 크기로 조정 */
+            height: 80px; /* 로고 크기 */
             max-width: 100%; /* 로고의 비율 유지 */
         }
-    
+
         .cover-image {
             width: 100%; /* 전체 너비 */
             max-height: 300px; /* 최대 높이 */
             object-fit: cover; /* 비율 유지하며 크기 조정 */
             display: block;
         }
-    
+
         nav ul {
             list-style: none;
             display: flex;
@@ -42,23 +42,23 @@
             padding: 0;
             margin: 0;
         }
-    
+
         nav ul li a {
             text-decoration: none;
             color: #007bff;
             font-weight: bold;
         }
-    
+
         nav ul li a:hover {
             text-decoration: underline;
         }
-    
+
         /* 버튼 영역 */
         .buttons {
             text-align: center;
             margin: 20px 0;
         }
-    
+
         .buttons button {
             padding: 10px 20px;
             margin: 10px;
@@ -70,28 +70,28 @@
             border-radius: 5px;
             cursor: pointer;
         }
-    
+
         .buttons button:hover {
             background-color: #0056b3;
         }
-    
+
         /* 메인 콘텐츠 */
         main {
             padding: 20px;
         }
-    
+
         h2 {
             border-bottom: 2px solid #007bff;
             padding-bottom: 5px;
             margin-bottom: 15px;
         }
-    
+
         .products {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* 기본적으로 가로 2칸 */
             gap: 15px;
         }
-    
+
         .product {
             border: 1px solid #ddd;
             padding: 15px;
@@ -99,27 +99,27 @@
             text-align: center;
             background-color: #f9f9f9;
         }
-    
+
         .product img {
             max-width: 100%;
             height: auto;
             display: block;
             margin: 10px auto;
         }
-    
+
         .stock {
             font-weight: bold;
             margin-top: 10px;
         }
-    
+
         .in-stock {
             color: green;
         }
-    
+
         .out-of-stock {
             color: red;
         }
-    
+
         footer {
             text-align: center;
             padding: 10px;
@@ -127,14 +127,14 @@
             border-top: 1px solid #ddd;
             margin-top: 20px;
         }
-    
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             .products {
                 grid-template-columns: repeat(2, 1fr); /* 모바일에서도 가로 2칸 유지 */
                 gap: 10px;
             }
-    
+
             .product {
                 padding: 10px; /* 모바일 화면에 맞게 여백 조정 */
             }
@@ -165,14 +165,14 @@
             <h2>특별판매 상품</h2>
             <div class="products">
                 <div class="product">
-                    <h3>[특별판매]</h3>
-                    <img src="./images/카에데1.PNG" alt="예시 상품 이미지 1">
+                    <h3>[특별판매] 상품 1</h3>
+                    <img src="./images/카에데1.PNG" alt="특별판매 상품 1">
                     <p>가격: 20,000원</p>
                     <p class="stock">재고 상태: <span class="in-stock">재고 있음</span></p>
                 </div>
                 <div class="product">
-                    <h3>[특별판매]</h3>
-                    <img src="./images/카에데1.PNG" alt="예시 상품 이미지 2">
+                    <h3>[특별판매] 상품 2</h3>
+                    <img src="./images/카에데1.PNG" alt="특별판매 상품 2">
                     <p>가격: 50,000원</p>
                     <p class="stock">재고 상태: <span class="out-of-stock">품절</span></p>
                 </div>
@@ -184,8 +184,8 @@
             <h2>한정판매 상품</h2>
             <div class="products">
                 <div class="product">
-                    <h3>[한정판매]</h3>
-                    <img src="./images/카에데1.PNG" alt="한정 상품 이미지 1">
+                    <h3>[한정판매] 상품 1</h3>
+                    <img src="./images/카에데1.PNG" alt="한정판매 상품 1">
                     <p>가격: 30,000원</p>
                     <p class="stock">재고 상태: <span class="in-stock">재고 있음</span></p>
                 </div>
