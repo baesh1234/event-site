@@ -11,6 +11,27 @@
             background-color: #f8f8f8;
         }
 
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
         .product {
             margin-bottom: 20px;
         }
@@ -25,56 +46,143 @@
             margin-right: 10px;
         }
 
-        button {
+        .status-display {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .status-display.in-stock {
+            color: green;
+        }
+
+        .status-display.out-of-stock {
+            color: red;
+        }
+
+        button.save {
             padding: 5px 10px;
-            background-color: #007bff;
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        button.save:hover {
+            background-color: #218838;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <script>
         // 비밀번호 보호
-        const password = prompt("비밀번호를 입력하세요:");
-        if (password !== "vmfpwpstm1!") {
-            alert("비밀번호가 올바르지 않습니다.");
-            window.location.href = "index.html";
+        const password = prompt("관리자 비밀번호를 입력하세요:");
+        if (password !== "프레젠스1!") {
+            alert("비밀번호가 올바르지 않습니다. 메인 페이지로 이동합니다.");
+            window.location.href = "index.html"; // 메인 페이지로 리디렉션
         }
     </script>
-    <h1>관리자 페이지</h1>
-    <div class="product">
-        <label for="product1">상품 1 상태:</label>
-        <select id="product1">
-            <option value="재고 있음">재고 있음</option>
-            <option value="품절">품절</option>
-        </select>
-    </div>
-    <div class="product">
-        <label for="product2">상품 2 상태:</label>
-        <select id="product2">
-            <option value="재고 있음">재고 있음</option>
-            <option value="품절">품절</option>
-        </select>
-    </div>
-    <button onclick="updateStock()">재고 상태 저장</button>
-    <script>
-        // Local Storage에 재고 상태 저장
-        function updateStock() {
-            const product1Status = document.getElementById('product1').value;
-            const product2Status = document.getElementById('product2').value;
 
-            localStorage.setItem('product1-status', product1Status);
-            localStorage.setItem('product2-status', product2Status);
+    <h1 style="text-align: center;">관리자 페이지</h1>
+
+    <!-- 섹션 전환 버튼 -->
+    <div class="buttons">
+        <button onclick="showSection('special-sales')">특별판매</button>
+        <button onclick="showSection('limited-sales')">한정판매</button>
+    </div>
+
+    <!-- 특별판매 섹션 -->
+    <section id="special-sales">
+        <h2>특별판매 상품 관리</h2>
+        <div class="product">
+            <label for="special-product1">상품 1 상태:</label>
+            <select id="special-product1" onchange="updateDisplay('special-product1', 'special-product1-display')">
+                <option value="재고 있음">재고 있음</option>
+                <option value="품절">품절</option>
+            </select>
+            <p id="special-product1-display" class="status-display in-stock">재고 있음</p>
+        </div>
+        <div class="product">
+            <label for="special-product2">상품 2 상태:</label>
+            <select id="special-product2" onchange="updateDisplay('special-product2', 'special-product2-display')">
+                <option value="재고 있음">재고 있음</option>
+                <option value="품절">품절</option>
+            </select>
+            <p id="special-product2-display" class="status-display in-stock">재고 있음</p>
+        </div>
+    </section>
+
+    <!-- 한정판매 섹션 -->
+    <section id="limited-sales" class="hidden">
+        <h2>한정판매 상품 관리</h2>
+        <div class="product">
+            <label for="limited-product1">상품 1 상태:</label>
+            <select id="limited-product1" onchange="updateDisplay('limited-product1', 'limited-product1-display')">
+                <option value="재고 있음">재고 있음</option>
+                <option value="품절">품절</option>
+            </select>
+            <p id="limited-product1-display" class="status-display in-stock">재고 있음</p>
+        </div>
+    </section>
+
+    <!-- 저장 버튼 -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="save" onclick="updateStock()">재고 상태 저장</button>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // 모든 섹션 숨기기
+            document.getElementById('special-sales').classList.add('hidden');
+            document.getElementById('limited-sales').classList.add('hidden');
+
+            // 선택한 섹션만 보이기
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function updateStock() {
+            // 특별판매 재고 상태 저장
+            localStorage.setItem('special-product1-status', document.getElementById('special-product1').value);
+            localStorage.setItem('special-product2-status', document.getElementById('special-product2').value);
+
+            // 한정판매 재고 상태 저장
+            localStorage.setItem('limited-product1-status', document.getElementById('limited-product1').value);
 
             alert('재고 상태가 저장되었습니다.');
         }
+
+        function loadStock() {
+            // 특별판매
+            const specialProduct1Status = localStorage.getItem('special-product1-status') || '재고 있음';
+            const specialProduct2Status = localStorage.getItem('special-product2-status') || '재고 있음';
+
+            document.getElementById('special-product1').value = specialProduct1Status;
+            document.getElementById('special-product2').value = specialProduct2Status;
+
+            updateDisplay('special-product1', 'special-product1-display');
+            updateDisplay('special-product2', 'special-product2-display');
+
+            // 한정판매
+            const limitedProduct1Status = localStorage.getItem('limited-product1-status') || '재고 있음';
+
+            document.getElementById('limited-product1').value = limitedProduct1Status;
+            updateDisplay('limited-product1', 'limited-product1-display');
+        }
+
+        function updateDisplay(selectId, displayId) {
+            const value = document.getElementById(selectId).value;
+            const displayElement = document.getElementById(displayId);
+
+            displayElement.textContent = value;
+            displayElement.className = value === '재고 있음' ? 'status-display in-stock' : 'status-display out-of-stock';
+        }
+
+        // 페이지 로드 시 저장된 상태 불러오기
+        window.onload = loadStock;
     </script>
 </body>
 </html>
