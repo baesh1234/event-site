@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* 하얀 배경 */
+            background-color: #ffffff;
             color: #333;
         }
 
@@ -19,13 +19,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: #f8f8f8; /* 헤더 배경색 */
+            background-color: #f8f8f8;
             border-bottom: 1px solid #ddd;
         }
 
         .logo img {
-            height: 80px; /* 로고 크기 */
-            max-width: 100%; /* 로고의 비율 유지 */
+            height: 80px;
+            max-width: 100%;
         }
 
         .admin-link {
@@ -33,39 +33,12 @@
             color: #007bff;
             text-decoration: none;
             font-weight: bold;
-            align-self: flex-start;
         }
 
         .admin-link:hover {
             text-decoration: underline;
         }
 
-        .cover-image {
-            width: 100%; /* 전체 너비 */
-            max-height: 300px; /* 최대 높이 */
-            object-fit: cover; /* 비율 유지하며 크기 조정 */
-            display: block;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        /* 버튼 영역 */
         .buttons {
             text-align: center;
             margin: 20px 0;
@@ -87,21 +60,11 @@
             background-color: #0056b3;
         }
 
-        /* 메인 콘텐츠 */
-        main {
-            padding: 20px;
-        }
-
-        h2 {
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-
         .products {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 기본적으로 가로 2칸 */
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
+            padding: 20px;
         }
 
         .product {
@@ -121,7 +84,6 @@
 
         .stock {
             font-weight: bold;
-            margin-top: 10px;
         }
 
         .in-stock {
@@ -139,16 +101,9 @@
             border-top: 1px solid #ddd;
         }
 
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            .products {
-                grid-template-columns: repeat(2, 1fr); /* 모바일에서도 가로 2칸 유지 */
-                gap: 10px;
-            }
-
-            .product {
-                padding: 10px; /* 모바일 화면에 맞게 여백 조정 */
-            }
+        /* 숨김 스타일 */
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -156,55 +111,45 @@
     <!-- 상단 네비게이션 -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="./images/굿스마일1.jpg" alt="굿스마일컴퍼니 로고"></a>
+            <img src="./images/굿스마일1.jpg" alt="굿스마일컴퍼니 로고">
         </div>
-        <!-- 관리자 페이지 링크 -->
         <a href="admin.html" class="admin-link">관리자 로그인</a>
     </header>
 
-    <!-- 커버 이미지 -->
-    <img src="./images/커버이미지3_1.png" alt="커버 이미지" class="cover-image">
-
-    <!-- 중앙 버튼 -->
+    <!-- 섹션 전환 버튼 -->
     <div class="buttons">
         <button onclick="showSection('special-sales')">특별판매</button>
         <button onclick="showSection('limited-sales')">한정판매</button>
     </div>
 
-    <!-- 메인 콘텐츠 -->
-    <main>
-        <!-- 특별판매 섹션 -->
-        <section id="special-sales" style="display: block;">
-            <h2>특별판매 상품</h2>
-            <div class="products">
-                <div class="product">
-                    <h3>[특별판매] 상품 1</h3>
-                    <img src="./images/카에데1.PNG" alt="특별판매 상품 1">
-                    <p>가격: 20,000원</p>
-                    <p class="stock">재고 상태: <span class="in-stock">재고 있음</span></p>
-                </div>
-                <div class="product">
-                    <h3>[특별판매] 상품 2</h3>
-                    <img src="./images/카에데1.PNG" alt="특별판매 상품 2">
-                    <p>가격: 50,000원</p>
-                    <p class="stock">재고 상태: <span class="out-of-stock">품절</span></p>
-                </div>
+    <!-- 특별판매 섹션 -->
+    <section id="special-sales">
+        <h2 style="text-align: center;">특별판매 상품</h2>
+        <div class="products">
+            <div class="product">
+                <h3>상품 1 - 피규어 A</h3>
+                <img src="./images/카에데1.PNG" alt="특별판매 상품 1">
+                <p class="stock" id="special-product1-stock">재고 있음</p>
             </div>
-        </section>
+            <div class="product">
+                <h3>상품 2 - 피규어 B</h3>
+                <img src="./images/카에데1.PNG" alt="특별판매 상품 2">
+                <p class="stock" id="special-product2-stock">재고 있음</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- 한정판매 섹션 -->
-        <section id="limited-sales" style="display: none;">
-            <h2>한정판매 상품</h2>
-            <div class="products">
-                <div class="product">
-                    <h3>[한정판매] 상품 1</h3>
-                    <img src="./images/카에데1.PNG" alt="한정판매 상품 1">
-                    <p>가격: 30,000원</p>
-                    <p class="stock">재고 상태: <span class="in-stock">재고 있음</span></p>
-                </div>
+    <!-- 한정판매 섹션 -->
+    <section id="limited-sales" class="hidden">
+        <h2 style="text-align: center;">한정판매 상품</h2>
+        <div class="products">
+            <div class="product">
+                <h3>상품 1 - 피규어 C</h3>
+                <img src="./images/카에데1.PNG" alt="한정판매 상품 1">
+                <p class="stock" id="limited-product1-stock">재고 있음</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- 푸터 -->
     <footer>
@@ -215,12 +160,35 @@
     <script>
         function showSection(sectionId) {
             // 모든 섹션 숨기기
-            document.getElementById('special-sales').style.display = 'none';
-            document.getElementById('limited-sales').style.display = 'none';
+            document.getElementById('special-sales').classList.add('hidden');
+            document.getElementById('limited-sales').classList.add('hidden');
 
             // 선택한 섹션만 보이기
-            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById(sectionId).classList.remove('hidden');
         }
+
+        function loadStock() {
+            // 특별판매 상태
+            const specialProduct1Status = localStorage.getItem('special-product1-status') || '재고 있음';
+            const specialProduct2Status = localStorage.getItem('special-product2-status') || '재고 있음';
+
+            updateDisplay('special-product1-stock', specialProduct1Status);
+            updateDisplay('special-product2-stock', specialProduct2Status);
+
+            // 한정판매 상태
+            const limitedProduct1Status = localStorage.getItem('limited-product1-status') || '재고 있음';
+
+            updateDisplay('limited-product1-stock', limitedProduct1Status);
+        }
+
+        function updateDisplay(elementId, status) {
+            const element = document.getElementById(elementId);
+            element.textContent = status;
+            element.className = status === '재고 있음' ? 'stock in-stock' : 'stock out-of-stock';
+        }
+
+        // 페이지 로드 시 저장된 상태 불러오기
+        window.onload = loadStock;
     </script>
 </body>
 </html>
