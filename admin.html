@@ -40,6 +40,14 @@
     </style>
 </head>
 <body>
+    <script>
+        // 비밀번호 보호
+        const password = prompt("비밀번호를 입력하세요:");
+        if (password !== "vmfpwpstm1!") {
+            alert("비밀번호가 올바르지 않습니다.");
+            window.location.href = "index.html";
+        }
+    </script>
     <h1>관리자 페이지</h1>
     <div class="product">
         <label for="product1">상품 1 상태:</label>
